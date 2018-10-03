@@ -50,54 +50,8 @@
         <input id="btn" type="button" value="Get All Employees" />
         <input id="btnClear" type="button" value="Clear" />
         <ul id="ulEmployees" />
+    
      
     </div>
 </body>
 </html>
-<!--
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-    <script src="Scripts/jquery-1.10.2.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var ulElever = $('#ulElever');
-
-            $('#btn').click(function () {
-                // Her kalder web api servicen med jquery ajax
-                $.ajax({
-                    type: 'GET',
-                    url: 'api/Employees/',
-                    //Den type data som vi forventer at få er json data
-                    dataType: 'json',
-                    // Så når 'the request er complete' så vil dataen bliver parsed til denne anonyme function
-                    succes: function (data) {
-                        ulElever.empty();
-                        // Vi 'iterere' over dataen og mens vi gør det vil vi køre følgende funktion
-                        $.each(data, function (index, val) {
-                            var fullName = val.FirstName + ' ' + val.LastName;
-                            ulElever.append('<li>' + fullName + '</li>');
-
-                        });
-                    }
-                });
-
-            });
-            $('#btnClear').click(function () {
-                ulElever.empty();
-            });
-        });
-
-    </script>
-</head>
-<body>
-    <input id="btn" type="button" value="Hent liste over alle elever" />
-    <input id="btnClear" type="button" value="Clear" />
-    <ul id="ulElever"></ul>
-</body>
-</html>
-
-    -->
- 

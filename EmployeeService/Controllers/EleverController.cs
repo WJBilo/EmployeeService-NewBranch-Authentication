@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Mvc;
 using EmployeeDataAcces;
@@ -16,6 +17,15 @@ namespace EmployeeService.Controllers
         // Denne metode kommer til at svare på et Get request.  
         public IEnumerable<ElevTable> Get()
         {
+
+
+            // Authentication code kudvenkat ep 18---
+
+            // her retriver vi den authenticatede user's navn, som er logget ind 
+            string username = Thread.CurrentPrincipal.Identity.Name; 
+
+            // ---Authentication code slut
+
             /* 
              * 
              Årsagen til brugen af using er at det sikre, at objectet bliver bortskaffet,
