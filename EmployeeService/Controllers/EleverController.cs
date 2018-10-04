@@ -19,7 +19,7 @@ namespace EmployeeService.Controllers
         {
 
 
-            // Authentication code kudvenkat ep 18---
+            // Authentication code kudvenkat ep 18--- Kan godt slettes benyttes ikke 
 
             // her retriver vi den authenticatede user's navn, som er logget ind 
             string username = Thread.CurrentPrincipal.Identity.Name; 

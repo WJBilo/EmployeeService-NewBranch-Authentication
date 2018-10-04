@@ -77,7 +77,10 @@ i added it to my Web API solution, by running Install-Package WebApiContrib.Form
 
             // Https configuration
             // Følgende gør at man kan benytte https protokollen i hele Web api applikationen (For alle controllere og action methods). 
-            config.Filters.Add(new RequireHttpsAttribute()); 
+            config.Filters.Add(new RequireHttpsAttribute());
+
+            // Gør at man i hele Web api applikationen skal være logget ind
+            config.Filters.Add(new BasicAuthenticationAttribute());
 
 
         }

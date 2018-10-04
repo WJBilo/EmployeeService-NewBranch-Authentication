@@ -46,7 +46,7 @@ namespace EmployeeService
                     // https://stackoverflow.com/questions/34954577/what-is-thread-currentprincipal-and-what-does-it-do 
                     // Setting CurrentPrincipal to the current Thread is valuable in situations where the principal must be validated several times and or it must be validated by other code running in your application
                     // GenericIdentity skaber en ny identitet ved navn 'username' 
-                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(username), null); // Sætter rules/regler tíl null
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(username), null); // Sætter roles tíl null
                 }
                 else
                 {
