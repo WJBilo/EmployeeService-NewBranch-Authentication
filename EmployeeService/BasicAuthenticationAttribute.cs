@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Web;
 using System.Web.Http.Controllers;
+using System.Web.Http.Cors;
 using System.Web.Http.Filters;
 
 namespace EmployeeService
@@ -15,11 +16,17 @@ namespace EmployeeService
     public class BasicAuthenticationAttribute : AuthorizationFilterAttribute
     {
         // her overrider vi en method som er i AuthorizationFilterAttribute base klassen.
+       // [EnableCors(origins: "", headers: "", methods: "*", SupportsCredentials = true)]
+        [RequireHttps]
+        // [EnableCorsAttribute("*", "*", "*")]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             // The HTTP Authorization request header contains the credentials to authenticate a user agent with a server
             // Hvis følgende == null så har brugeren ikke sendt de rigtige credentials. 
             // Og så vil vi sende en unauthorized HTTP Response message. 
+            var header = actionContext.Request.Headers.FirstOrDefault(h => h.Key.Equals("Authorization"));
+         
             if (actionContext.Request.Headers.Authorization == null)
             {
                 actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);

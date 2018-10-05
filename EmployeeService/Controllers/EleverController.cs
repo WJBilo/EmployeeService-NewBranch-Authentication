@@ -5,18 +5,20 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 using EmployeeDataAcces;
 
 namespace EmployeeService.Controllers
 {
-        public class EleverController : ApiController
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    public class EleverController : ApiController
     {  
         private object entities;
 
 
         
-      [BasicAuthentication]
+       // [BasicAuthentication]
         // Følgende Get udskriver en liste med alle Eleverne 
         // Denne metode kommer til at svare på et Get request.  
         public IEnumerable<ElevTable> Get()

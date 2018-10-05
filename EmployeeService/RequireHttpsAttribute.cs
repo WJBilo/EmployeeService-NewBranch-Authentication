@@ -29,7 +29,8 @@ namespace EmployeeService
                 UriBuilder uriBuilder = new UriBuilder(actionContext.Request.RequestUri);
                 // URI'en skal have https som scheme 
                 uriBuilder.Scheme = Uri.UriSchemeHttps;
-                uriBuilder.Port = 44352;
+                 uriBuilder.Port = 44352;
+                // SLet dette kommentar det er port til anden app uriBuilder.Port = 44322;
 
                 actionContext.Response.Headers.Location = uriBuilder.Uri; 
             }
