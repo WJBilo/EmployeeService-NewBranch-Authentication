@@ -36,17 +36,19 @@ namespace EmployeeService
                 // Så vi skal splitte den ved kolon 
                 // Følgende komemer til at retunere et string array der kommer til at indeholde [0]brugernavnet og [1]passwordet. 
                 string[] usernamePasswordArray = decodedAuthenticationToken.Split(':');
-                string username = usernamePasswordArray[0];
+                string brugernavn = usernamePasswordArray[0];
                 string password = usernamePasswordArray[1];
 
+
                 // Følgende er true hvis vi har et brugernavn og password som svare til det som brugeren har indtastet. 
-                if(EmployeeSecurity.Login(username, password))
+                if(EmployeeSecurity.Login(brugernavn, password))
                 {
+                    
                     // Thread.CurrentPrincipal is the way .NET applications represent the identity of the user or service account running the process. 
                     // https://stackoverflow.com/questions/34954577/what-is-thread-currentprincipal-and-what-does-it-do 
                     // Setting CurrentPrincipal to the current Thread is valuable in situations where the principal must be validated several times and or it must be validated by other code running in your application
                     // GenericIdentity skaber en ny identitet ved navn 'username' 
-                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(username), null); // Sætter roles tíl null
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(brugernavn), null); // Sætter roles tíl null
                 }
                 else
                 {

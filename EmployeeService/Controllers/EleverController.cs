@@ -13,6 +13,10 @@ namespace EmployeeService.Controllers
         public class EleverController : ApiController
     {  
         private object entities;
+
+
+        
+      [BasicAuthentication]
         // Følgende Get udskriver en liste med alle Eleverne 
         // Denne metode kommer til at svare på et Get request.  
         public IEnumerable<ElevTable> Get()
@@ -22,7 +26,7 @@ namespace EmployeeService.Controllers
             // Authentication code kudvenkat ep 18--- Kan godt slettes benyttes ikke 
 
             // her retriver vi den authenticatede user's navn, som er logget ind 
-            string username = Thread.CurrentPrincipal.Identity.Name; 
+          //  string username = Thread.CurrentPrincipal.Identity.Name; 
 
             // ---Authentication code slut
 

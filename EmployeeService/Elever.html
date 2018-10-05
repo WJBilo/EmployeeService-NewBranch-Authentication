@@ -11,12 +11,21 @@
             var ulEmployees = $('#ulEmployees');
             $('#btn').click(function ()
             {
+                // Vi vil gerne fange brugernavnet og passwordet fra input boxen 
+                var username = $('#txtUsername').val(); 
+                var password = $('#txtPassword').val(); 
+
                 $.ajax(
                  {
                     type: 'GET',
-                    url: "api/Elever/",
+                    url: "https://localhost:44352/api/Elever",
                     // The type of data that you're expecting back from the server.
                     dataType: 'jsonp',
+
+                    headers: {
+                        // btoa converter strengen til base 64 encoding 
+                        'Authorization': 'Basic ' + btoa(username + ':' + password)
+                    },
                     // (succes) A function to be called if the request succeeds.
                     success: function (data)
                     {
@@ -28,16 +37,28 @@
                             
                             if (val.tilstede == true)
                             {
-                                status = ' tilstede';
+                                status = ' (tilstede)';
                             }
                             else
                             {
-                                status = ' ikke tilstede';
+                                status = ' (ikke tilstede)';
                             }
                             ulEmployees.append('<li>' + fullName + '     ' + status +'</li>');
                         });
+                    },
+                    // Følgende kode blive kørt når overstående kode er udført succesully
+                    
+                    complete: function (jqXHR) {
+                        // Denne if bliver kørt hvis brugeren ikke er authorized til at hente dataen 
+                        if (jqXHR.status=='401')
+                        {
+                            ulEmployees.empty(); 
+                            ulEmployees.append('<li style="color:red">' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>'); 
+
+                        }
+
                     }
-                });
+                 });
             });
             $('#btnClear').click(function () {
                 ulEmployees.empty();
@@ -47,7 +68,11 @@
 </head>
 <body>
     <div>
-        <input id="btn" type="button" value="Get All Employees" />
+        Brugernavn : <input type="text" id="txtUsername" />
+        Password : <input type="password" id="txtPassword" /> 
+        <br /><br />
+
+        <input id="btn" type="button" value="Hent alle ansatte" />
         <input id="btnClear" type="button" value="Clear" />
         <ul id="ulEmployees" />
     
