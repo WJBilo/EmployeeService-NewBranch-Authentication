@@ -35,7 +35,6 @@ namespace EmployeeService
         {
             // Web API configuration and services
 
-
             // Web API routes
             config.MapHttpAttributeRoutes();
 
@@ -68,21 +67,21 @@ i added it to my Web API solution, by running Install-Package WebApiContrib.Form
             // Her ærklærer vi variablen jsonpFormatter og sætter den lig med en ny instance af JsonpMediaTypeFormatter
             // Får at få fat i jsonformatter skal vi pass'er config objekt ind i constructoren som, som bliver specificeret i Register funktionens parameter længere oppe
 
-            var jsonpFormatter = new JsonpMediaTypeFormatter(config.Formatters.JsonFormatter); // Husk det er new jsonP der bliver lavet
+        //    var jsonpFormatter = new JsonpMediaTypeFormatter(config.Formatters.JsonFormatter); // Husk det er new jsonP der bliver lavet
             
 
             // Nu vil vi gerne have jsonp Formatet ind ind vores collection af formater i config objektet (config.Formatters) 
             // Ved index position 0 vil vi indsætte jsonp formatet
-            config.Formatters.Insert(0, jsonpFormatter);
+     //       config.Formatters.Insert(0, jsonpFormatter);
 
             // Https configuration
             // Følgende gør at man kan benytte https protokollen i hele Web api applikationen (For alle controllere og action methods). 
-         config.Filters.Add(new RequireHttpsAttribute());
+          config.Filters.Add(new RequireHttpsAttribute());
 
             // Gør at man i hele Web api applikationen skal være logget ind
-           config.Filters.Add(new BasicAuthenticationAttribute());
+        config.Filters.Add(new BasicAuthenticationAttribute());
 
-            config.EnableCors(); 
+         config.EnableCors(); 
 
         }
     }

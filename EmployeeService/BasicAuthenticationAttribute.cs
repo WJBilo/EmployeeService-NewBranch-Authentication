@@ -17,9 +17,9 @@ namespace EmployeeService
     {
         // her overrider vi en method som er i AuthorizationFilterAttribute base klassen.
        // [EnableCors(origins: "", headers: "", methods: "*", SupportsCredentials = true)]
-        [RequireHttps]
+       // [RequireHttps]
         // [EnableCorsAttribute("*", "*", "*")]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
+      [EnableCors(origins: "*", headers: "*", methods: "*")]
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             // The HTTP Authorization request header contains the credentials to authenticate a user agent with a server
