@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WebApiContrib.Formatting.Jsonp;
 
 namespace EmployeeService
@@ -33,7 +34,11 @@ namespace EmployeeService
         // Web api configuration http://www.tutorialsteacher.com/webapi/configure-web-api  WebApiConfig.Register() 
         public static void Register(HttpConfiguration config)
         {
+            // Her var jeg sidst 
+
+
             // Web API configuration and services
+
 
             // Web API routes
             config.MapHttpAttributeRoutes();
