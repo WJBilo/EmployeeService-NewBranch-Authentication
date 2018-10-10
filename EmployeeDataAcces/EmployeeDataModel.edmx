@@ -10,10 +10,10 @@
             <PropertyRef Name="userID" />
           </Key>
           <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="system_id" Type="int" />
           <Property Name="fornavn" Type="varchar" MaxLength="50" />
           <Property Name="efternavn" Type="varchar" MaxLength="50" />
-          <Property Name="tilstede" Type="bit" />
-          <Property Name="brugernavn" Type="nchar" MaxLength="50" />
+          <Property Name="brugernavn" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="60" />
           <Property Name="magnetstribe" Type="varchar" MaxLength="20" />
           <Property Name="magnet_crypt" Type="text" />
@@ -21,7 +21,7 @@
           <Property Name="tjekind_timestamp" Type="datetime" />
           <Property Name="user_level" Type="nvarchar" MaxLength="50" />
           <Property Name="iSKP" Type="nvarchar" MaxLength="50" />
-          <Property Name="bemning" Type="nvarchar" MaxLength="50" />
+          <Property Name="bemning" Type="varchar" MaxLength="50" />
           <Property Name="debug" Type="text" />
         </EntityType>
         <EntityContainer Name="EleverModelStoreContainer">
@@ -41,17 +41,17 @@
           <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fornavn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="efternavn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="tilstede" Type="Boolean" />
-          <Property Name="brugernavn" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="brugernavn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="magnetstribe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="magnet_crypt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="tjekind_timestamp" Type="DateTime" Precision="3" />
           <Property Name="user_level" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="iSKP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="bemning" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bemning" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="debug" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="system_id" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -62,6 +62,7 @@
           <EntitySetMapping Name="ElevTables">
             <EntityTypeMapping TypeName="EleverModel.ElevTable">
               <MappingFragment StoreEntitySet="ElevTable">
+                <ScalarProperty Name="system_id" ColumnName="system_id" />
                 <ScalarProperty Name="debug" ColumnName="debug" />
                 <ScalarProperty Name="bemning" ColumnName="bemning" />
                 <ScalarProperty Name="iSKP" ColumnName="iSKP" />
@@ -72,7 +73,6 @@
                 <ScalarProperty Name="magnetstribe" ColumnName="magnetstribe" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="brugernavn" ColumnName="brugernavn" />
-                <ScalarProperty Name="tilstede" ColumnName="tilstede" />
                 <ScalarProperty Name="efternavn" ColumnName="efternavn" />
                 <ScalarProperty Name="fornavn" ColumnName="fornavn" />
                 <ScalarProperty Name="userID" ColumnName="userID" />

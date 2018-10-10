@@ -24,8 +24,6 @@ public partial class ElevTable
 
     public string efternavn { get; set; }
 
-    public Nullable<bool> tilstede { get; set; }
-
     public string brugernavn { get; set; }
 
     public string password { get; set; }
@@ -45,6 +43,8 @@ public partial class ElevTable
     public string bemning { get; set; }
 
     public string debug { get; set; }
+
+    public Nullable<int> system_id { get; set; }
 
 }
 

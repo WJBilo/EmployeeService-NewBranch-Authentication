@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,60 +14,56 @@ namespace EmployeeService.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EleverController : ApiController
-    {  
+    {
         private object entities;
 
 
-        
-       // [BasicAuthentication]
-        // Følgende Get udskriver en liste med alle Eleverne 
-        // Denne metode kommer til at svare på et Get request.  
-        public IEnumerable<ElevTable> Get()
+
+        // [BasicAuthentication]
+        // Følgende Get udskriver en liste med alle Eleverne
+        // Denne metode kommer til at svare på et Get request.
+        public IEnumerable<ElevTable>
+    Get()
         {
 
 
-            // Authentication code kudvenkat ep 18--- Kan godt slettes benyttes ikke 
+            // Authentication code kudvenkat ep 18--- Kan godt slettes benyttes ikke
 
-            // her retriver vi den authenticatede user's navn, som er logget ind 
-          //  string username = Thread.CurrentPrincipal.Identity.Name; 
+            // her retriver vi den authenticatede user's navn, som er logget ind
+            //  string username = Thread.CurrentPrincipal.Identity.Name;
 
             // ---Authentication code slut
 
-            /* 
-             * 
-             Årsagen til brugen af using er at det sikre, at objectet bliver bortskaffet,
-             så snart den er out of scope (Færdig med dens opgave). 
-             https://stackoverflow.com/questions/75401/what-are-the-uses-of-using-in-c-sharp 
-             */
-            // Vi laver en instance af klassen entities da denne klasse hjælper os med at forbinde til databasen og hente elev enheder 
+            /*
+            *
+            Årsagen til brugen af using er at det sikre, at objectet bliver bortskaffet,
+            så snart den er out of scope (Færdig med dens opgave).
+            https://stackoverflow.com/questions/75401/what-are-the-uses-of-using-in-c-sharp
+            */
+            // Vi laver en instance af klassen entities da denne klasse hjælper os med at forbinde til databasen og hente elev enheder
             using (EleverEntities entities = new EleverEntities())
             {
 
-             
-                    // Følgende er en collection property (ElevTables) der kommer til at retunere en liste over eleverne
-                    return entities.ElevTables.ToList();
-                
+
+                // Følgende er en collection property (ElevTables) der kommer til at retunere en liste over eleverne
+                return entities.ElevTables.ToList();
+
             }
 
         }
 
-        // Følgende Get udskriver en bestemt elev 
+        // Følgende Get udskriver en bestemt elev
         public ElevTable Get(int id)
         {
             using (EleverEntities entities = new EleverEntities())
             {
-                // Retunere eleven med id'et som blev specificeret i Get Parameteren. 
+                // Retunere eleven med id'et som blev specificeret i Get Parameteren.
                 return entities.ElevTables.FirstOrDefault(elev => elev.userID == id);
 
             }
 
         }
 
-        
-
-
 
     }
 }
-  
-
