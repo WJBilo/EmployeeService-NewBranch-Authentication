@@ -24,15 +24,14 @@ namespace EmployeeService.Controllers
         //// [BasicAuthentication] Jeg tror jeg har tilføjet dette inde i WebApi.config for alle sider... Undersøg det.
         //// Følgende Get udskriver en liste med alle Eleverne
         //// Denne metode kommer til at svare på et Get request.
-        public IEnumerable<ElevTable>
-            Get()
+        public IEnumerable<ElevTable> Get()
         {
 
 
-            // Authentication code kudvenkat ep 18--- Kan godt slettes benyttes ikke
+            // Authentication code kudvenkat ep 18--- Denne kommentar Kan godt slettes benyttes ikke    
 
             // her retriver vi den authenticatede user's navn, som er logget ind
-            //  string username = Thread.CurrentPrincipal.Identity.Name;
+            //  string username = Thread.CurrentPrincipal.Identity.Name; 
 
             // ---Authentication code slut
 
@@ -48,8 +47,11 @@ namespace EmployeeService.Controllers
                 // Sætter FilteredData til IEnumerable (AsEnumerable), frem for IQueryAble, da IQueryAble eksekverer filter logikken på databsesiden hvilket vil skabe konflikt.
                 var FilteredData = from a in entities.ElevTables.AsEnumerable()
                           select new ElevTable() { bemning = a.bemning, efternavn = a.efternavn, fornavn = a.fornavn, userID = a.userID};
+
                 
-                return FilteredData.ToList(); 
+
+                return FilteredData.ToList();
+                
                 // Følgende er en collection property (ElevTables) der kommer til at retunere en liste over eleverne
 
 
@@ -77,7 +79,6 @@ namespace EmployeeService.Controllers
         //    }
 
         //}
-
 
     }
 }

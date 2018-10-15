@@ -33,7 +33,7 @@ using System.Data.Entity.Infrastructure;
             throw new UnintentionalCodeFirstException();
         }
 
-
+        // DBset af type ElevTable -> (Tabel Model)
         public virtual DbSet<ElevTable> ElevTables { get; set; }
 
     }
