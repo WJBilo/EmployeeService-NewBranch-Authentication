@@ -17,26 +17,24 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-    // DbContext is an important class in Entity Framework API. It is a bridge between your domain or entity classes and the database.
-    // DbContext er tilstede i System.Data.Entity; namespace.
-    // Pointen med EleverEntities klassen er at skabe en forbindelse til databasen. 
-    public partial class EleverEntities : DbContext
+
+public partial class EleverEntities : DbContext
+{
+    public EleverEntities()
+        : base("name=EleverEntities")
     {
-        public EleverEntities()
-            : base("name=EleverEntities")
-        {
-
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-
-        // DBset af type ElevTable -> (Tabel Model)
-        public virtual DbSet<ElevTable> ElevTables { get; set; }
 
     }
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        throw new UnintentionalCodeFirstException();
+    }
+
+
+    public virtual DbSet<ElevTable> ElevTables { get; set; }
+
+}
 
 }
 

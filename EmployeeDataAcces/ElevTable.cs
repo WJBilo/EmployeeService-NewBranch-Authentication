@@ -14,7 +14,7 @@ namespace EmployeeDataAcces
 
 using System;
     using System.Collections.Generic;
-    // Følgende modelklasse mapper (passer) med tabellen ElevTable i Elever databasen i mssql.
+    
 public partial class ElevTable
 {
 
