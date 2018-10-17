@@ -8,7 +8,7 @@
     <script src="Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var ulEmployees = $('#ulEmployees');
+            var ulElevs = $('#ulElevs');
             $('#btn').click(function () {
                 // Vi vil gerne fange brugernavnet og passwordet fra input boxen
                 var username = $('#txtUsername').val();
@@ -27,7 +27,7 @@
                         },
                         // (succes) A function to be called if the request succeeds.
                         success: function (data) {
-                            ulEmployees.empty();
+                            ulElevs.empty();
                             $.each(data, function (index, val) {
                                 var fullName = val.fornavn + ' ' + val.efternavn;
                                 var status;
@@ -38,7 +38,7 @@
                                 else {
                                     status = ' (ikke tilstede)';
                                 }
-                                ulEmployees.append('<li>' + fullName + '     ' + status + '</li>');
+                                ulElevs.append('<li>' + fullName + '     ' + status + '</li>');
                             });
                         },
                         // Følgende kode blive kørt når overstående kode er udført succesully
@@ -46,8 +46,8 @@
                         complete: function (jqXHR) {
                             // Denne if bliver kørt hvis brugeren ikke er authorized til at hente dataen
                             if (jqXHR.status == '401') {
-                                ulEmployees.empty();
-                                ulEmployees.append('<li style="color:red">' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>');
+                                ulElevs.empty();
+                                ulElevs.append('<li style="color:red">' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>');
 
                             }
 
@@ -55,7 +55,7 @@
                     });
             });
             $('#btnClear').click(function () {
-                ulEmployees.empty();
+                ulElevs.empty();
             });
         });
     </script>
@@ -67,7 +67,7 @@
         <br /><br />
         <input id="btn" type="button" value="Hent alle ansatte" />
         <input id="btnClear" type="button" value="Clear" />
-        <ul id="ulEmployees" />
+        <ul id="ulElevs" />
 
 
     </div>

@@ -8,7 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using WebApiContrib.Formatting.Jsonp;
 
-namespace EmployeeService
+namespace ElevService
 {
 
     public class CustomJsonFormatter : JsonMediaTypeFormatter

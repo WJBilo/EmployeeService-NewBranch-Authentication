@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using EmployeeDataAcces; // Vi skal benytte de 'entities' som vi har i vores EmployeeDataAcces projekt. 
-namespace EmployeeService
+using ElevDataAcces; // Vi skal benytte de 'entities' som vi har i vores ElevDataAcces projekt. 
+namespace ElevService
 {
-    public class EmployeeSecurity
+    public class ElevSecurity
     {
         public static bool Login(string username, string kodeord)
         {

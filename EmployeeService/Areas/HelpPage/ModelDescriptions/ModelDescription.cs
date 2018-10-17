@@ -1,6 +1,6 @@
 using System;
 
-namespace EmployeeService.Areas.HelpPage.ModelDescriptions
+namespace ElevService.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

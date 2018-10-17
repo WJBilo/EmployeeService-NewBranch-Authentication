@@ -194,7 +194,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="BasicAuthenticationAttribute.cs" />
     <Compile Include="Controllers\EleverController.cs" />
-    <Compile Include="EmployeeSecurity.cs" />
+    <Compile Include="ElevSecurity.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -275,13 +275,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EmployeeDataAcces\EmployeeDataAcces.csproj">
-      <Project>{e9b0a230-e602-46d4-b000-4aa85541574a}</Project>
-      <Name>EmployeeDataAcces</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <ProjectReference Include="..\ElevDataAcces\ElevDataAcces.csproj">
+      <Project>{49e0b098-dde1-486b-9086-d34e2517d539}</Project>
+      <Name>ElevDataAcces</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

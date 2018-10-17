@@ -11,7 +11,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Cors;
 using System.Web.Http.Filters;
 
-namespace EmployeeService
+namespace ElevService
 {
     public class BasicAuthenticationAttribute : AuthorizationFilterAttribute
     {
@@ -48,7 +48,7 @@ namespace EmployeeService
 
 
                 // Følgende er true hvis vi har et brugernavn og password som svare til det som brugeren har indtastet. 
-                if(EmployeeSecurity.Login(brugernavn, password))
+                if(ElevSecurity.Login(brugernavn, password))
                 {
                     
                     // Thread.CurrentPrincipal is the way .NET applications represent the identity of the user or service account running the process. 

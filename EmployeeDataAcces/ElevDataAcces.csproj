@@ -7,8 +7,8 @@
     <ProjectGuid>{E9B0A230-E602-46D4-B000-4AA85541574A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmployeeDataAcces</RootNamespace>
-    <AssemblyName>EmployeeDataAcces</AssemblyName>
+    <RootNamespace>ElevDataAcces</RootNamespace>
+    <AssemblyName>ElevDataAcces</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

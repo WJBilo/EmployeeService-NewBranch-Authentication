@@ -10,9 +10,10 @@
     using System.Web.Http;
     using System.Web.Http.Cors;
     using System.Web.Mvc;
-    using EmployeeDataAcces;
+using ElevDataAcces; 
+    
 
-namespace EmployeeService.Controllers
+namespace ElevService.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EleverController : ApiController

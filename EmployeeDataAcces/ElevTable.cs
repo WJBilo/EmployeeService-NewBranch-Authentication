@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace EmployeeDataAcces
+namespace ElevDataAcces
 {
 
 using System;

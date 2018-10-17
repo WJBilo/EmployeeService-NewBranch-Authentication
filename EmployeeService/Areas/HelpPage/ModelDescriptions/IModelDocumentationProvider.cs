@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace EmployeeService.Areas.HelpPage.ModelDescriptions
+namespace ElevService.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {
