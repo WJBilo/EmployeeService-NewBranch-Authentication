@@ -29,6 +29,7 @@ namespace ElevService
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
             // Følgende sørger for at den rå json data som klienten modtager er ordentligt indented. 
             // Og har camelcase isdedet for pascalcase 
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
@@ -38,19 +39,15 @@ namespace ElevService
             config.Formatters.JsonFormatter.SupportedMediaTypes
             .Add(new MediaTypeHeaderValue("text/html")); 
 
-
-            // http://www.tutorialsteacher.com/webapi/web-api-formatters Media type formatters 
-            // Web api configuration http://www.tutorialsteacher.com/webapi/configure-web-api  
-
-
             // Https configuration
-            // Følgende gør at man kan benytte https protokollen i hele Web api applikationen (For alle controllere og action methods). 
+
+            // Følgende gør at man skal benytte https protokollen i hele Web api applikationen (For alle controllere og action methods). 
             config.Filters.Add(new RequireHttpsAttribute());
 
-            // Gør at man i hele Web api applikationen skal være logget ind, får at kunne udstede HTTP Requests. 
-         config.Filters.Add(new BasicAuthenticationAttribute()); // har testet at denne linje kode er det der gør at man kræver basic auth
+            // Gør at man i hele Web api applikationen skal være logget ind, får at kunne udstede HTTP Requests til denne Rest service. 
+            config.Filters.Add(new BasicAuthenticationAttribute()); 
 
-            // Slår Cross origin sharing til som gør det muligt at sende Get request afsted til denne Rest service, ved hjælp af JQuery AJAX, på tværs af domæner.  
+            // Slår Cross origin sharing til som gør det muligt at sende Get request afsted til denne Rest service ved hjælp af JQuery AJAX på tværs af domæner.  
             EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "GET");
             config.EnableCors(cors); 
 

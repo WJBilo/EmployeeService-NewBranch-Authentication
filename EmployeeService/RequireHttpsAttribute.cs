@@ -14,30 +14,22 @@ namespace ElevService
     {
 
        
-        // Følgende funktion har en parameter actionContext som provider os med adgang til både the request og response objekt. 
-        // Find ud af hvad HttpActionContext klassen gør 
+        // Følgende metode har en parameter actionContext som provider os med adgang til både the request og response objekt. 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             // Hvis browser request ikke er issued med https protokol så redirect the request, så det benytter https
-
             if (actionContext.Request.RequestUri.Scheme != Uri.UriSchemeHttps)
             {
-               // var RequestUri = actionContext.Request.RequestUri;  kan godt slette denne linje.
-
-                // Response er en instance af HttpResponseMessage klassen: Defination af HttpResponseMessage:  https://www.oreilly.com/library/view/tcpip-guide/9781593270476/ch81s03.html 
-                // https://www.techopedia.com/definition/27178/http-header 
-                // CreateResponse: Creates an HttpResponseMessage wired up to the associated HttpRequestMessage.  https://msdn.microsoft.com/en-us/library/hh969014(v=vs.118).aspx 
+   
                 actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Found);
                 actionContext.Response.Content = new StringContent("<p> Benyt HTTPS istedetfor HTTP </p>", Encoding.UTF8, "text/html"); // text/html gør at Content-typen ændres til html 
+               
                 // Her redirecter vi automatisk til https ved hjælp af UriBuilder klassen. 
                 // Og vi bygger URI'en fra request objektet 
                 UriBuilder uriBuilder = new UriBuilder(actionContext.Request.RequestUri);
                 if (uriBuilder.Host.Equals("localhost"))
                 {
-
-                 //    var port = HttpContext.Current.Request.ServerVariables["SERVER_PORT"]; denne linje kan godt slettes 
                     // URI'en skal have https som scheme 
-
                     uriBuilder.Scheme = Uri.UriSchemeHttps;
                     uriBuilder.Port = 44362;
                     actionContext.Response.Headers.Location = uriBuilder.Uri;

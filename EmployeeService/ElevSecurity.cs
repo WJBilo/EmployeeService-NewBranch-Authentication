@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ElevDataAcces; // Vi skal benytte de 'entities' som vi har i vores ElevDataAcces projekt. 
+using ElevDataAcces; 
 namespace ElevService
 {
     public class ElevSecurity
