@@ -10,17 +10,14 @@
     using System.Web.Http;
     using System.Web.Http.Cors;
     using System.Web.Mvc;
-using ElevDataAcces; 
+    using ElevDataAcces; 
     
 
 namespace ElevService.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EleverController : ApiController
     {
         // private object entities;
-
-
 
         //// [BasicAuthentication] Jeg tror jeg har tilføjet dette inde i WebApi.config for alle sider... Undersøg det.
         //// Følgende Get udskriver en liste med alle Eleverne
@@ -42,15 +39,21 @@ namespace ElevService.Controllers
             så snart den er out of scope (Færdig med dens opgave).
             https://stackoverflow.com/questions/75401/what-are-the-uses-of-using-in-c-sharp
             */
+
+            // using state https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement 
             // Vi laver en instance af klassen entities da denne klasse hjælper os med at forbinde til databasen og hente elev enheder
             using (EleverEntities entities = new EleverEntities()) 
             {
-                // Sætter FilteredData til IEnumerable (AsEnumerable), frem for IQueryAble, da IQueryAble eksekverer filter logikken på databsesiden hvilket vil skabe konflikt.
-                var FilteredData = from a in entities.ElevTables.AsEnumerable()
-                          select new ElevTable() { bemning = a.bemning, efternavn = a.efternavn, fornavn = a.fornavn, userID = a.userID};
+                // Sætter FilteredData til IEnumerable (AsEnumerable), frem for IQueryAble, da IQueryAble eksekverer filter logikken på databasesiden hvilket vil skabe konflikt.
+                // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/from-clause 
 
+                // Elever indholder alt fra tabellen
+                // Jeg laver en instans af ElevTable som kun kommer til at indeholde elevernes fornavn efter navn osv. 
+                // Jeg selecter ud af det der fra Elever 
+                var FilteredData = from elever in entities.ElevTables.AsEnumerable()
+                          select new ElevTable() { bemning = elever.bemning, efternavn = elever.efternavn, fornavn = elever.fornavn, userID = elever.userID};
+               
                 
-
                 return FilteredData.ToList();
                 
                 // Følgende er en collection property (ElevTables) der kommer til at retunere en liste over eleverne
@@ -60,26 +63,9 @@ namespace ElevService.Controllers
                 //  return entities.ElevTables.ToList()
 
 
-
-                //var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(test);
-                //return test;
-
-
             }
 
         }
-
-        // Følgende Get udskriver en bestemt elev
-        //public ElevTable Get(int id)
-        //{
-        //    using (EleverEntities entities = new EleverEntities())
-        //    {
-        //        // Retunere eleven med id'et som blev specificeret i Get Parameteren.
-        //        return entities.ElevTables.FirstOrDefault(elev => elev.userID == id);
-
-        //    }
-
-        //}
 
     }
 }

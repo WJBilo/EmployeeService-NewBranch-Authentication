@@ -11,13 +11,13 @@ namespace ElevService
         {
             using(EleverEntities entities = new EleverEntities())
             {
-
-                // Her cheker vi om password, brugernavn og brugerrettigheder matcher 
+                
+                // Her cheker vi om password, brugernavn og brugerrettigheder matcher  
                 return entities.ElevTables.Any(user => user.brugernavn.Equals(username,
-                    StringComparison.OrdinalIgnoreCase) && user.password == kodeord && user.user_level.Equals("1")); // StringComparison.OrdinalIgnoreCase specificere at vi er ligeglad med at checke om brugernavns bogstaverne er uppercase eller lowercase
-
+                StringComparison.OrdinalIgnoreCase) && user.password == kodeord && user.user_level.Equals("1")); // StringComparison.OrdinalIgnoreCase specificere at vi er ligeglad med at checke om brugernavns bogstaverne er uppercase eller lowercase
             }
-
         }
     }
 }
+
+
