@@ -6,7 +6,6 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using WebApiContrib.Formatting.Jsonp;
 
 namespace ElevService
 {
@@ -47,11 +46,9 @@ namespace ElevService
             // Gør at man i hele Web api applikationen skal være logget ind, får at kunne udstede HTTP Requests til denne Rest service. 
             config.Filters.Add(new BasicAuthenticationAttribute()); 
 
-            // Slår Cross origin sharing til som gør det muligt at sende Get request afsted til denne Rest service ved hjælp af JQuery AJAX på tværs af domæner.  
+            // Slår Cross origin sharing til som gør det muligt at sende Get request afsted til denne Rest service ved hjælp af JQuery AJAX på tværs af domæner.  .
             EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "GET");
             config.EnableCors(cors); 
-
-           
 
         }
     }
