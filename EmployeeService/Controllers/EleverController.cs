@@ -10,23 +10,29 @@
     using System.Web.Mvc;
     using ElevDataAcces; 
     
-
+ 
 namespace ElevService.Controllers
 {
     public class EleverController : ApiController
     {
 
-        // Følgende Get udskriver en liste med alle Elevernes informationer
+        // Følgende Get returne en liste med alle Elevernes informationer
         public IEnumerable<ElevTable> Get()
         {
 
-            // Vi laver en instance af klassen entities da denne klasse hjælper os med at forbinde til databasen og hente elev enheder
+            // Vi laver en instance af klassen entities da denne klasse hjælper os med at 
+            // forbinde til databasen og hente elev enheder
             using (EleverEntities entities = new EleverEntities()) 
             {
-                var FilteredData = from elever in entities.ElevTables.AsEnumerable()
+                 // Jeg filtrere listen så kun elevernes fornavn, efternavn, bruger id og bemærkning (status vedrørende om de er tilstede eller), bliver udleveret, 
+                 // når man sender et Get-request til serveren. Jeg har filtreret listen på denne måde, 
+                 // da det kun er disse informationer der er nødvendig for klienten i denne løsning og også af sikkerhedsårsager. Dette bliver gjort med følgende LINQ Query udtryk: 
+                var filteredStudentList = from elever in entities.ElevTable.AsEnumerable()
                           select new ElevTable() { bemning = elever.bemning, efternavn = elever.efternavn, fornavn = elever.fornavn, userID = elever.userID};
-
-                return FilteredData.ToList();
+             
+                // Efter det returnere jeg en liste med elevernes informationer.
+                return filteredStudentList.ToList();
+               
             }
 
         }
@@ -34,101 +40,3 @@ namespace ElevService.Controllers
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//// [BasicAuthentication] Jeg tror jeg har tilføjet dette inde i WebApi.config for alle sider... Undersøg det.
-//// Følgende Get udskriver en liste med alle Eleverne
-//// Denne metode kommer til at svare på et Get request.
-//public IEnumerable<ElevTable>
-//    Get()
-//{
-
-
-//    // Authentication code kudvenkat ep 18--- Kan godt slettes benyttes ikke
-
-//    // her retriver vi den authenticatede user's navn, som er logget ind
-//    //  string username = Thread.CurrentPrincipal.Identity.Name;
-
-//    // ---Authentication code slut
-
-//    /*
-//    *
-//    Årsagen til brugen af using er at det sikre, at objectet bliver bortskaffet,
-//    så snart den er out of scope (Færdig med dens opgave).
-//    https://stackoverflow.com/questions/75401/what-are-the-uses-of-using-in-c-sharp
-//    */
-//    // Vi laver en instance af klassen entities da denne klasse hjælper os med at forbinde til databasen og hente elev enheder
-//    using (EleverEntities entities = new EleverEntities())
-//    {
-
-//        //var test = from a in entities.ElevTables
-//        //         select new ElevTableFilter { bemning = a.bemning, efternavn = a.efternavn, fornavn = a.fornavn };
-
-//        // Følgende er en collection property (ElevTables) der kommer til at retunere en liste over eleverne
-
-
-//        // Følgende er en collection property (ElevTables) der kommer til at retunere en liste over eleverne
-//        return entities.ElevTables.ToList();
-
-//    }
-
-//}
-
-
-
-
-
-
-
-
-
-
-//    ElevFilter:
-
-
-
-//            public IEnumerable<ElevTableFilter>
-//            Get()
-//{
-
-
-//    // Authentication code kudvenkat ep 18--- Kan godt slettes benyttes ikke
-
-//    // her retriver vi den authenticatede user's navn, som er logget ind
-//    //  string username = Thread.CurrentPrincipal.Identity.Name;
-
-//    // ---Authentication code slut
-
-//    /*
-//    *
-//    Årsagen til brugen af using er at det sikre, at objectet bliver bortskaffet,
-//    så snart den er out of scope (Færdig med dens opgave).
-//    https://stackoverflow.com/questions/75401/what-are-the-uses-of-using-in-c-sharp
-//    */
-//    // Vi laver en instance af klassen entities da denne klasse hjælper os med at forbinde til databasen og hente elev enheder
-//    using (EleverEntitiesFiltered entities = new EleverEntitiesFiltered())
-//    {
-
-//        //var test = from a in entities.ElevTables
-//        //         select new ElevTableFilter { bemning = a.bemning, efternavn = a.efternavn, fornavn = a.fornavn };
-
-//        // Følgende er en collection property (ElevTables) der kommer til at retunere en liste over eleverne
-
-
-//        // Følgende er en collection property (ElevTables) der kommer til at retunere en liste over eleverne
-//        return entities.ElevTablesFiltered.ToList();
-
-//    }
-
-//}

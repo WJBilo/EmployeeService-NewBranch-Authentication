@@ -30,9 +30,7 @@ namespace ElevService
             );
 
             // Følgende sørger for at den rå json data som klienten modtager er ordentligt indented. 
-            // Og har camelcase isdedet for pascalcase 
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
-            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             // Gør sådan at serveren som standard formatere dataen i JSON-format 
             config.Formatters.JsonFormatter.SupportedMediaTypes

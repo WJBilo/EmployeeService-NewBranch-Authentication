@@ -25,6 +25,6 @@ namespace ElevDataAcces
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ElevTable> ElevTable { get; set; }
+        public virtual DbSet<ElevTable> ElevTables { get; set; }
     }
 }

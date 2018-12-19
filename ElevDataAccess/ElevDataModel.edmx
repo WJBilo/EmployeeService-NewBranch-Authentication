@@ -52,7 +52,7 @@
           <Property Name="debug" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="EleverEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ElevTable" EntityType="Self.ElevTable" />
+          <EntitySet Name="ElevTables" EntityType="Self.ElevTable" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -60,7 +60,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EleverModelStoreContainer" CdmEntityContainer="EleverEntities">
-          <EntitySetMapping Name="ElevTable">
+          <EntitySetMapping Name="ElevTables">
             <EntityTypeMapping TypeName="EleverModel.ElevTable">
               <MappingFragment StoreEntitySet="ElevTable">
                 <ScalarProperty Name="userID" ColumnName="userID" />
@@ -94,7 +94,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

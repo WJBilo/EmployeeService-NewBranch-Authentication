@@ -10,18 +10,25 @@ using System.Web.Http.Filters;
 
 namespace ElevService
 {
+    // AuthorizationFilterAttribute klassen indeholder en metode kaldet "OnAuthorization", 
+    // hvor vi kan ’inject’ en ny respons, hvis anmodningen (http-Request’et) ikke er udført med HTTPS.
     public class RequireHttpsAttribute : AuthorizationFilterAttribute
     {
 
-       
-        // Følgende metode har en parameter actionContext som provider os med adgang til både the request og response objekt. 
+
+        // Følgende metode har en parameter actionContext som provider os med adgang til dens request og response properties.  
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             // Hvis browser request ikke er issued med https protokol så redirect the request, så det benytter https
             if (actionContext.Request.RequestUri.Scheme != Uri.UriSchemeHttps)
             {
-   
+                // Her sætter vi respons beskeden, som vi gerne vil sende tilbage til klienten,
+                // lig med http status koden 302, som indikere at den efterspurgte information er fundet. 
                 actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Found);
+                // Her sætter vi indholdet af den respons besked, 
+                // som vi gerne vil sende tilbage til klienten, 
+                // lig med en ny instans af StringContent, og constructoren forsyner os
+                // med en måde at skabe en HTML streng, som vi kan levere til klienten som beskedindhold. 
                 actionContext.Response.Content = new StringContent("<p> Benyt HTTPS istedetfor HTTP </p>", Encoding.UTF8, "text/html"); // text/html gør at Content-typen ændres til html 
                
                 // Her redirecter vi automatisk til https ved hjælp af UriBuilder klassen. 
@@ -31,7 +38,7 @@ namespace ElevService
                 {
                     // URI'en skal have https som scheme 
                     uriBuilder.Scheme = Uri.UriSchemeHttps;
-                    uriBuilder.Port = 44362;
+                    uriBuilder.Port = 44373;
                     actionContext.Response.Headers.Location = uriBuilder.Uri;
                 }
                 else

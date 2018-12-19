@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\test\Documents\Proj\EmployeeService-NewBranch-Authentication\ElevDataAcces\ElevDataModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\test\source\repos\ElevProjekt\ElevService-NewBranch-Authentication\ElevDataAcces\ElevDataModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

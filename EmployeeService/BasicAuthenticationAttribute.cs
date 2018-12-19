@@ -14,6 +14,8 @@ using System.Web.Http.Filters;
 
 namespace ElevService
 {
+    
+   
     public class BasicAuthenticationAttribute : AuthorizationFilterAttribute
     {
         // her overrider vi en method som er i AuthorizationFilterAttribute base klassen.
@@ -25,6 +27,7 @@ namespace ElevService
 
             if (actionContext.Request.Headers.Authorization == null)
             {
+                // Sætter responsen som vi vil sende tilbage til klienten lig med http status koden 401
                 actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
             }
             else
@@ -33,6 +36,8 @@ namespace ElevService
                 string authenticationToken = actionContext.Request.Headers.Authorization.Parameter;
                 // Her decoder vi authenticationToken 
                 // Får at få fat  i den decodede string skal vi benytte Encoding klassen og gøre følgende. 
+                // Dette konvertere den base-64-enkodede string, om til et 8-bit integer array.
+                // Jeg benytter så GetString metoden fra Encoding klassen til at decode alle de specificerede bytes i dette int array, om til en string.
                 string decodedAuthenticationToken = Encoding.UTF8.GetString(Convert.FromBase64String(authenticationToken));
 
                 // Selve vores authenticationToken ser sådan her ud: username:password, når den er decoded
@@ -43,7 +48,9 @@ namespace ElevService
                 string password = usernamePasswordArray[1];
 
 
-                // Her checker vi
+                // Her checker vi om brugeren har rettighed til at tilgå resursen
+                // Hvis følgende ikke er true har han ikke adgang, hvis det dog er true
+                // så har han lov til at passere og dette filter står ikke i vejen.
                 if (!ElevSecurity.Login(brugernavn, password))
                 {
                     actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
